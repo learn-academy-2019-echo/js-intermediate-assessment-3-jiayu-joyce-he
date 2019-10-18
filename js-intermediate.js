@@ -5,6 +5,25 @@
 
 // 1. Write a function called getFib that returns the first 10 numbers of the Fibonacci sequence in an array. Expected output: [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
 
+//can take any positive number as input
+const getFib = (num) => {
+	let arr = new Array(num)
+	for (let i = 0; i<num; i++) {
+		arr[i] = (arr[i-1] || 1) + (arr[i-2] || 0)
+	}
+	return arr
+}
+console.log(getFib(10))
+
+//hard code to output 10
+const getFibNew = () => {
+	let arr = [1,1]
+	for (i=2; i<10; i++) {arr.push(arr[i-2]+arr[i-1])}
+	return arr
+}
+console.log(getFibNew())
+
+//Notes: will continue to experiment with recursion and .reduce ideas
 
 
 // 2. Write a function called oddChecker that takes in an array and returns a new array of only odd numbers.
@@ -14,6 +33,9 @@ var fullArr1 = [4, 9, 0, "7", 8, true, "hey", 7, 199, -9, false, "hola"]
 var fullArr2 = ["hello", 7, 23, -823, false, 78, null, "67", 6, "number"]
 // Expected output: [7, 23, -823]
 
+const filterOdd = arr => arr.filter(n => n%2 !== 0 && (typeof n === "number") )
+console.log(filterOdd(fullArr1))
+console.log(filterOdd(fullArr2))
 
 
 // 3. Given the object below, complete the console.log to find specific information:
@@ -29,13 +51,15 @@ var bicycle = {
 }
 
 // Log the type of bicycle:
-console.log()
+console.log(bicycle.type)
 
 // Log the bell:
-console.log()
+console.log(bicycle.gear[2])
+console.log(...bicycle.gear.filter(x => x.includes("bell"))) // Notes: a more dynamic search function
+// console.log(...bicycle.gear.filter(x => x.includes("toe"))) //works too
 
 // Log the PSI:
-console.log()
+console.log(bicycle.wheels.specs.pop())
 
 
 // 4. Write a function that takes in an array and returns an array in reverse order.
@@ -45,18 +69,26 @@ var originalArray1 = [1, 2, 3, 4, 5, 6, 7]
 var originalArray2 = ["9", "1", "o", "h", "c", "e"]
 // Expected output: ["e", "c", "h", "o", "1", "9"]
 
+const reverseArr = arr => arr.reverse()
+
+console.log(reverseArr(originalArray1));
+console.log(reverseArr(originalArray2));
 
 
 // 5. Write the code that would make this test pass.
 
-describe("multTwo", () => {
-    test ("returns an array with all the numbers multiplied by two", () => {
-        expect(multTwo([3, 4, 5])).toEqual([6, 8, 10])
-        expect(multTwo([23, -9, 0])).toEqual([46, -18, 0])
-        expect(multTwo([4.5, -4.5, 12])).toEqual([9, -9, 24])
-    })
-})
+// describe("multTwo", () => {
+//     test ("returns an array with all the numbers multiplied by two", () => {
+//         expect(multTwo([3, 4, 5])).toEqual([6, 8, 10])
+//         expect(multTwo([23, -9, 0])).toEqual([46, -18, 0])
+//         expect(multTwo([4.5, -4.5, 12])).toEqual([9, -9, 24])
+//     })
+// })
 
+const timesTwo = arr => arr.map(n => n*2)
+console.log(timesTwo([3, 4, 5]));
+console.log(timesTwo([23, -9, 0]));
+console.log(timesTwo([4.5, -4.5, 12]));
 
 
 // 6. Write a function called letterCounter that logs the number of times the letter "l" appears in ourString.
