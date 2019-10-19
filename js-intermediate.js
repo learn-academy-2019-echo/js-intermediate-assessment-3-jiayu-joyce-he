@@ -95,7 +95,8 @@ console.log(timesTwo([4.5, -4.5, 12]));
 
 var ourString = "Hello Learn Students!"
 // Expected output: 3
-
+const letterCounter = arr => arr.split("").map(x => x.toLowerCase().includes('l')).reduce((a,c) => a + c)
+console.log(letterCounter(ourString));
 
 
 // 7. Create a function that takes in a string of a single word and returns the middle letter of the word. If the word is an even number of letters, return the two middle letters.
@@ -105,13 +106,29 @@ var middleLetters1 = "hello"
 var middleLetters2 = "rhinoceros"
 // Expected output: “oc”
 
-
+const findMiddle = string => string.length%2 !== 0 ? string[(string.length-1)/2] : string[string.length/2 - 1] + string[string.length/2]
+console.log(findMiddle(middleLetters1));
+console.log(findMiddle(middleLetters2));
 
 
 // 8. Write a program to get the area of a sphere using object classes. Create three spheres with different radi as test cases. Area of a sphere =  4πr^2 (four pi r squared)
 
+const getArea = radius => 4*Math.PI*radius^2
+
+class Sphere {
+    constructor(radius) {
+        this.radius = radius
+    }
+}
+
+let sphere1 = new Sphere(1);
+let sphere2 = new Sphere(2);
+let sphere3 = new Sphere(3);
 
 
+console.log(getArea(sphere1.radius))
+console.log(getArea(sphere2.radius))
+console.log(getArea(sphere3.radius))
 
 // 9. Use object destructuring to return the nested values of specs. Expected output: 4, "manual"
 // Don't overthink this one, it's just destrcturing practice.
@@ -125,7 +142,8 @@ var myCar = {
   }
 }
 
-
+const {specs} = myCar
+console.log(specs)
 
 // 10. STRETCH: Create a function that takes in an array and returns an array of the accumulating sum. An empty array should return an empty array.
 
@@ -135,3 +153,9 @@ var numbersToAdd2 = [0, 7, -8, 12]
 // Expected output: [0, 7, -1, 11]
 var numbersToAdd3 = []
 // Expected output: []
+
+const accSum = array => array.map(
+	arr => arr.reduce((a,c) => a + c)
+)
+
+console.log(accSum(numbersToAdd1));
