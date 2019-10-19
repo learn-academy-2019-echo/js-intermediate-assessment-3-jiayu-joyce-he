@@ -16,14 +16,28 @@ const getFib = (num) => {
 console.log(getFib(10))
 
 //hard code to output 10
-const getFibNew = () => {
+const getFib2 = () => {
 	let arr = [1,1]
 	for (i=2; i<10; i++) {arr.push(arr[i-2]+arr[i-1])}
 	return arr
 }
-console.log(getFibNew())
+console.log(getFib2())
 
-//Notes: will continue to experiment with recursion and .reduce ideas
+//using 2 functions
+
+const numFib = n => (n < 2) ? n : numFib(n-1) + numFib(n-2)
+
+const getFib3 = num => {
+  let arr = []
+  for(let i = 1; i <= num; i++){
+    arr.push(numFib(i))
+  }
+  return arr
+}
+
+console.log(getFib3(10))
+
+//Notes: will continue to experiment with recursion and .reduce ideas on array
 
 
 // 2. Write a function called oddChecker that takes in an array and returns a new array of only odd numbers.
@@ -154,8 +168,18 @@ var numbersToAdd2 = [0, 7, -8, 12]
 var numbersToAdd3 = []
 // Expected output: []
 
-const accSum = array => array.map(
-	arr => arr.reduce((a,c) => a + c)
-)
+const accSum = array => {
+	return array.map((value,index,arr) => {
+		return arr.slice(0,index+1).reduce((a,c) => a + c)})
+}
 
 console.log(accSum(numbersToAdd1));
+console.log(accSum(numbersToAdd2));
+console.log(accSum(numbersToAdd3));
+
+/*Process notes:
+console.log([2, 4, 45, 9].slice(0,4).reduce((a,c) => a + c));
+console.log([2, 4, 45, 9].map((value,index,arr) => {
+	return arr.slice(0,index+1).reduce((a,c) => a + c)})
+)
+*/
